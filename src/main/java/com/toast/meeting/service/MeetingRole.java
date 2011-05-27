@@ -35,6 +35,9 @@ public class MeetingRole {
 	private String amCount;
 
 	@Column
+	private Integer userId;
+
+	@Column
 	private Date updated;
 
 	@Column
@@ -97,13 +100,18 @@ public class MeetingRole {
 		this.meeting = meeting;
 	}
 
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
 		return "MeetingRole [id=" + id + ", meeting=" + meeting + ", roleId=" + roleId
-				+ ", timeSpent=" + timeSpent + ", amCount=" + amCount + ", updated=" + updated
-				+ ", created=" + created + "]";
+				+ ", timeSpent=" + timeSpent + ", amCount=" + amCount + ", userId=" + userId
+				+ ", updated=" + updated + ", created=" + created + "]";
 	}
-
-	
-	
 }

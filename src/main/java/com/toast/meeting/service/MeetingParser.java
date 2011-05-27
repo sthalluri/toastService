@@ -9,6 +9,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import com.toast.util.StringHelper;
+
 public class MeetingParser {
 
 	
@@ -35,6 +37,7 @@ public class MeetingParser {
 				jsonObj.put("amCount", role.getAmCount());
 				jsonObj.put("created", role.getCreated());
 				jsonObj.put("roleId", role.getRoleId());
+				jsonObj.put("userId", role.getUserId());
 				if (role.getTimeSpent() != null) {
 					jsonObj.put("timeSpent", role.getTimeSpent().intValue());
 				}
@@ -87,9 +90,17 @@ public class MeetingParser {
                 if (!jRole.isNull("id")) {
                 	role.setId(jRole.getInt("id"));
                 }
-            	role.setAmCount(jRole.getString("amCount"));
+                if (!jRole.isNull("amCount")) {
+                	role.setAmCount(jRole.getString("amCount"));
+                }
             	if (!jRole.isNull("time")) {
             		role.setTimeSpent(jRole.getInt("time"));
+            	}
+            	if (!jRole.isNull("userId")&& StringHelper.isValid(jRole.getString("userId"))) {
+            		int userId = jRole.getInt("userId");
+            		if(userId > 0){
+                		role.setUserId(userId);
+            		}
             	}
             	role.setMeeting(meeting);
             	roles.add(role);

@@ -38,7 +38,7 @@ public class User {
 
 	@Column(name = "defaultClubId")
 	private Integer defaultClubId;
-	
+
 	@Column
 	private Date updated;
 
@@ -123,5 +123,15 @@ public class User {
 
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+
+	public void getName() {
+		String name = "";
+		if (firstName != null) {
+			name += firstName;
+		}
+		if (lastName != null) {
+			name += " " + lastName;
+		}
 	}
 }
