@@ -1,7 +1,3 @@
-CREATE USER 'toast'@'localhost'
-IDENTIFIED BY 'toaster'
-
-
 drop database if exists toast
 go
 
