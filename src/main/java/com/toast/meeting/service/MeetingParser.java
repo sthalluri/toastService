@@ -34,7 +34,13 @@ public class MeetingParser {
 			for (MeetingRole role : meeting.getMeetingRoles()) {
 				JSONObject jsonObj = new JSONObject();
 				jsonObj.put("id", role.getId());
-				jsonObj.put("amCount", role.getAmCount());
+				String amCount = role.getAmCount();
+				JSONObject amJsonObj = new JSONObject();
+				if(StringHelper.isValid(amCount)){
+			        JSONTokener amTokenizer = new JSONTokener(amCount);
+			        amJsonObj  = (JSONObject) amTokenizer.nextValue();
+				}
+				jsonObj.put("amCount", amJsonObj);
 				jsonObj.put("created", role.getCreated());
 				jsonObj.put("roleId", role.getRoleId());
 				jsonObj.put("userId", role.getUserId());
@@ -91,10 +97,11 @@ public class MeetingParser {
                 	role.setId(jRole.getInt("id"));
                 }
                 if (!jRole.isNull("amCount")) {
-                	role.setAmCount(jRole.getString("amCount"));
+                    JSONObject amCount = jRole.getJSONObject("amCount");
+                	role.setAmCount(amCount.toString());
                 }
-            	if (!jRole.isNull("time")) {
-            		role.setTimeSpent(jRole.getInt("time"));
+            	if (!jRole.isNull("timeSpent")) {
+            		role.setTimeSpent(jRole.getInt("timeSpent"));
             	}
             	if (!jRole.isNull("userId")&& StringHelper.isValid(jRole.getString("userId"))) {
             		int userId = jRole.getInt("userId");

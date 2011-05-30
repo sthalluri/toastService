@@ -51,7 +51,9 @@ public class MeetingController extends BaseController{
 	public String save(@RequestParam("json") String json, ModelMap model) throws JSONException {
 		Meeting meeting = (Meeting) MeetingParser.fromJson(json);
 		meetingService.save(meeting);
-		model.put("json", MeetingParser.toJson(meeting));
+		response.setReturnVal(meeting);
+		response.addMessage("msg.savesuccessful");
+		model.put("json", response.toJson());
 		return "json";
 	}
 
