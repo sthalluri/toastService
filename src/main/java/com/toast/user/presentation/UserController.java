@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.toast.presentation.BaseController;
-import com.toast.service.Response;
 import com.toast.user.service.AuthToken;
 import com.toast.user.service.User;
 import com.toast.user.service.UserService;
