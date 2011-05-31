@@ -83,6 +83,20 @@ CREATE TABLE meetingRole
 go
 
 
+drop table if exists meetingRoleContent
+go
+
+CREATE TABLE meetingRoleContent
+(
+    id              INT PRIMARY KEY AUTO_INCREMENT,
+    meetingRoleId 	INT,
+	content			VARCHAR(2500),
+	userId			INT,
+    updated			TIMESTAMP,
+    created     	TIMESTAMP
+)
+go
+
 drop table if exists clubRole
 go
 

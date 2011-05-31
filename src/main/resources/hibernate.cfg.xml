@@ -9,6 +9,7 @@
         <mapping class="com.toast.user.service.User" />
         <mapping class="com.toast.meeting.service.Meeting" />
         <mapping class="com.toast.meeting.service.MeetingRole" />
+        <mapping class="com.toast.meeting.service.MeetingRoleContent" />
         <mapping class="com.toast.club.service.Club" />
         <mapping class="com.toast.club.service.ClubRole" />
     </session-factory>

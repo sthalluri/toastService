@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.toast.meeting.service.Meeting;
 import com.toast.meeting.service.MeetingParser;
+import com.toast.meeting.service.MeetingRoleContent;
 import com.toast.meeting.service.MeetingService;
 import com.toast.presentation.BaseController;
 import com.toast.util.JSONException;
+import com.toast.util.JSONParser;
 
 @Controller
 @RequestMapping("/meeting")
@@ -62,4 +64,23 @@ public class MeetingController extends BaseController{
 		meetingService.delete(meetingId);
 		return "redirect:/index";
 	}
+	
+	@RequestMapping(value = "/getContent/{id}", method = RequestMethod.GET)
+	public String getContent(@PathVariable("id") Integer meetingRoleId, HttpSession session, ModelMap model)
+			throws JSONException {
+		response.setReturnVal(meetingService.getContent(meetingRoleId));
+		model.put("json", response.toJson());
+		return "json";
+	}
+
+	@RequestMapping(value = "/saveContent", method = RequestMethod.POST)
+	public String saveContent(@RequestParam("json") String json, ModelMap model) throws JSONException {
+		MeetingRoleContent content = (MeetingRoleContent) JSONParser.parseJSON(json,MeetingRoleContent.class);
+		meetingService.saveContent(content);
+		response.setReturnVal(content);
+		response.addMessage("msg.savesuccessful");
+		model.put("json", response.toJson());
+		return "json";
+	}
+
 }

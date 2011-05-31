@@ -1,3 +1,8 @@
+
+insert into user values(null,'guest','Alpha', 'User',null,'guest@gmail.com','guest',1,null,null)\
+
+insert into club values(null, 'PERSONAL', 'MYCLUB',null, null,null)
+
 insert into clubRole values ('speaker1','First Speech');
 insert into clubRole values ('speaker2', 'Second Speech');
 insert into clubRole values ('tableTopics','Table Topics');
@@ -15,3 +20,5 @@ insert into clubRole values ('ttResponse5',   'Table Topic Response5');
 insert into clubRole values ('ttResponse6',   'Table Topic Response6');
 insert into clubRole values ('ttResponse7',   'Table Topic Response7');
 insert into clubRole values ('ttResponse',    'Table Topic Response8');
+
+

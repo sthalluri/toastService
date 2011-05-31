@@ -1,7 +1,6 @@
 package com.toast.club.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -24,6 +23,7 @@ public class ClubServiceTest extends BaseServiceTest {
 	@Test
 	public void testGet() throws JSONException {
 		Club club = clubService.get(1);
+		System.out.println(club);
 	}
 
 	@Test

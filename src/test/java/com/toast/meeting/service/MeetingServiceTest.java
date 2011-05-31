@@ -48,6 +48,14 @@ public class MeetingServiceTest extends BaseServiceTest {
 	}
 	
 	@Test
+	public void testSaveContent() {
+		MeetingRoleContent content = new MeetingRoleContent();
+		content.setMeetingRoleId(13);
+		content.setContent("{type:'ttContent', title:'Test', questions:[{id:1,text:'question1'},{id:2,text:'question1'}]}");
+		meetingService.saveContent(content);
+	}
+	
+	@Test
 	public void testUpdate(){
 		String json = "{\"id\":1,\"clubId\":1,\"wordOfTheDay\":\"Dont My Words\",\"updated\":\"2011-05-25 15:32:26.0\",\"created\":\"2011-05-25 15:32:26.0\",\"roles\":{" +
 				"\"test1\":{\"id\":1,\"amCount\":\"{ams:20}\",\"created\":\"2011-05-25 15:32:26.0\",\"roleId\":\"test\"}" +

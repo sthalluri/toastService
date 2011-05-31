@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.toast.meeting.integration.MeetingDAO;
+import com.toast.meeting.integration.MeetingRoleContentDAO;
 
 @Service
 public class MeetingService {
 
 	@Autowired
 	private MeetingDAO meetingDAO;
+	
+	@Autowired
+	MeetingRoleContentDAO meetingRoleContentDAO;
 
 	@Transactional
 	public void save(Meeting meeting) {
@@ -37,6 +41,16 @@ public class MeetingService {
 	@Transactional
 	public List<Meeting>  getByClubId(Integer clubId) {
 		return meetingDAO.getByClubId(clubId);
+	}
+
+	@Transactional
+	public List<MeetingRoleContent>  getContent(Integer meetingRoleId) {
+		return meetingRoleContentDAO.list(meetingRoleId);
+	}
+
+	@Transactional
+	public void  saveContent(MeetingRoleContent content) {
+		meetingRoleContentDAO.save(content);
 	}
 
 }

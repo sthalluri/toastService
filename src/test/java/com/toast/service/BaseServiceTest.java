@@ -2,7 +2,6 @@ package com.toast.service;
 
 import org.junit.Before;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 

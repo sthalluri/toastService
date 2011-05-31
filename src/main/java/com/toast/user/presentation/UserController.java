@@ -59,6 +59,7 @@ public class UserController extends BaseController {
 		AuthToken authToken = (AuthToken) JSONParser.parseJSON(json, AuthToken.class);
 		User user = userService.checkLogin(authToken);
 		if (user !=null) {
+			response.setSuccess(Boolean.TRUE);
 			response.setReturnVal(user);
 			response.addMessage("login.success");
 		} else {
