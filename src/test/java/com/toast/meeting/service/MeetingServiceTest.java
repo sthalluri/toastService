@@ -51,7 +51,7 @@ public class MeetingServiceTest extends BaseServiceTest {
 	public void testSaveContent() {
 		MeetingRoleContent content = new MeetingRoleContent();
 		content.setMeetingRoleId(13);
-		content.setContent("{type:'ttContent', title:'Test', questions:[{id:1,text:'question1'},{id:2,text:'question1'}]}");
+		content.setContent("{type:'ttContent', title:'Test', topics:[{id:1,text:'question1'},{id:2,text:'question1'}]}");
 		meetingService.saveContent(content);
 	}
 	
