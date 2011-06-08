@@ -103,6 +103,9 @@ public class MeetingParser {
             	if (!jRole.isNull("timeSpent")) {
             		role.setTimeSpent(jRole.getInt("timeSpent"));
             	}
+            	if (!jRole.isNull("timeLimits")) {
+            		role.setTimeLimits(jRole.getString("timeLimits"));
+            	}
             	if (!jRole.isNull("userId")&& StringHelper.isValid(jRole.getString("userId"))) {
             		int userId = jRole.getInt("userId");
             		if(userId > 0){
