@@ -36,6 +36,9 @@ public class Meeting {
 	private Date meetingDate;
 
 	@Column
+	private String location;
+
+	@Column
 	private Date updated;
 
 	@Column
@@ -114,6 +117,14 @@ public class Meeting {
 
 	public void setClubId(Integer clubId) {
 		this.clubId = clubId;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	@Override

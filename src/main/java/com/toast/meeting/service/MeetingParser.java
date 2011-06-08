@@ -29,6 +29,7 @@ public class MeetingParser {
 			obj.put("meetingDate", meeting.getMeetingDate());
 			obj.put("themeOfTheDay", meeting.getThemeOfTheDay());
 			obj.put("wordOfTheDay", meeting.getWordOfTheDay());
+			obj.put("location", meeting.getLocation());
 			//JSONArray jsonArray = new JSONArray();
 			JSONObject roles = new JSONObject();
 			for (MeetingRole role : meeting.getMeetingRoles()) {
@@ -84,6 +85,9 @@ public class MeetingParser {
             }
             if (!obj.isNull("clubId")) {
             	meeting.setClubId(obj.getInt("clubId"));
+            }
+            if (!obj.isNull("location")) {
+            	meeting.setLocation(obj.getString("location"));
             }
             List<MeetingRole> roles = new ArrayList<MeetingRole>();
             JSONObject jRoles = obj.getJSONObject("roles");

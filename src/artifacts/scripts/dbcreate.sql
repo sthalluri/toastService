@@ -61,6 +61,7 @@ CREATE TABLE meeting
 	wordOfTheDay	VARCHAR(200),
 	themeOfTheDay	VARCHAR(250),
 	meetingDate		TIMESTAMP,
+	location		VARCHAR(250),
     updated			TIMESTAMP,
     created     	TIMESTAMP
 )
