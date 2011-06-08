@@ -77,6 +77,7 @@ CREATE TABLE meetingRole
 	roleId			VARCHAR(50),
 	timeSpent		INT,
 	amCount			VARCHAR(100),
+	timeLimits		VARCHAR(100),
 	userId			INT,
     updated			TIMESTAMP,
     created     	TIMESTAMP

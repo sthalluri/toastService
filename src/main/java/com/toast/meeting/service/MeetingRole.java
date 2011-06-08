@@ -35,6 +35,9 @@ public class MeetingRole {
 	private String amCount;
 
 	@Column
+	private String timeLimits;
+
+	@Column
 	private Integer userId;
 
 	@Column
@@ -106,6 +109,14 @@ public class MeetingRole {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public String getTimeLimits() {
+		return timeLimits;
+	}
+
+	public void setTimeLimits(String timeLimits) {
+		this.timeLimits = timeLimits;
 	}
 
 	@Override
