@@ -45,6 +45,13 @@ public class MeetingParser {
 				jsonObj.put("created", role.getCreated());
 				jsonObj.put("roleId", role.getRoleId());
 				jsonObj.put("userId", role.getUserId());
+				String timeLimitsStr = role.getTimeLimits();
+				JSONObject timeLimitsJsonObj = new JSONObject();
+				if(StringHelper.isValid(timeLimitsStr)){
+			        JSONTokener timeLimitsTokenizer = new JSONTokener(timeLimitsStr);
+			        timeLimitsJsonObj   = (JSONObject) timeLimitsTokenizer.nextValue();
+				}
+				jsonObj.put("timeLimits", timeLimitsJsonObj);				
 				if (role.getTimeSpent() != null) {
 					jsonObj.put("timeSpent", role.getTimeSpent().intValue());
 				}
@@ -103,6 +110,10 @@ public class MeetingParser {
                 if (!jRole.isNull("amCount")) {
                     JSONObject amCount = jRole.getJSONObject("amCount");
                 	role.setAmCount(amCount.toString());
+                }
+                if (!jRole.isNull("timeLimits")) {
+                    JSONObject timeLimits = jRole.getJSONObject("timeLimits");
+                	role.setTimeLimits(timeLimits.toString());
                 }
             	if (!jRole.isNull("timeSpent")) {
             		role.setTimeSpent(jRole.getInt("timeSpent"));

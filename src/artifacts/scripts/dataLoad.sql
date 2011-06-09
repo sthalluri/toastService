@@ -4,8 +4,8 @@ insert into user values(null,'guest2','Beta', 'User',null,'guest2@gmail.com','gu
 
 insert into club values(null, 'PERSONAL', 'MYCLUB',null, null,null);
 
-insert into clubmember values (1,1)
-insert into clubmember values (1,2)
+insert into clubmember values (1,1);
+insert into clubmember values (1,2);
 
 insert into clubRole values ('speaker1','First Speech');
 insert into clubRole values ('speaker2', 'Second Speech');
