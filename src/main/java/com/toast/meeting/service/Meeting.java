@@ -36,6 +36,9 @@ public class Meeting {
 	private Date meetingDate;
 
 	@Column
+	private String gramLog;
+
+	@Column
 	private String location;
 
 	@Column
@@ -125,6 +128,14 @@ public class Meeting {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	
+	public String getGramLog() {
+		return gramLog;
+	}
+
+	public void setGramLog(String gramLog) {
+		this.gramLog = gramLog;
 	}
 
 	@Override

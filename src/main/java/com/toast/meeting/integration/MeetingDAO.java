@@ -32,8 +32,8 @@ public class MeetingDAO {
 	@SuppressWarnings("unchecked")
 	public List<Meeting> list() {
 		System.out.println("Came to the Meetings");
-		return sessionFactory.getCurrentSession().createQuery("from Meeting").list();
-	}
+		return sessionFactory.getCurrentSession().createQuery("from Meeting order by meetingDate desc").list();
+	}	
 
 	public void delete(Integer id) {
 		Meeting meeting = (Meeting) sessionFactory.getCurrentSession().load(Meeting.class, id);
@@ -50,7 +50,7 @@ public class MeetingDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Meeting> getByClubId(Integer clubId) {
-		return sessionFactory.getCurrentSession().createQuery("from Meeting where clubId = ?")
+		return sessionFactory.getCurrentSession().createQuery("from Meeting where clubId = ? order by meetingDate desc")
 				.setInteger(0, clubId.intValue()).list();
 	}
 	

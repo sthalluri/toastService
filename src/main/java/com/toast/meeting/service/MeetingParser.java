@@ -1,6 +1,10 @@
 package com.toast.meeting.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -30,18 +34,19 @@ public class MeetingParser {
 			obj.put("themeOfTheDay", meeting.getThemeOfTheDay());
 			obj.put("wordOfTheDay", meeting.getWordOfTheDay());
 			obj.put("location", meeting.getLocation());
+			String gramLog = meeting.getGramLog();
+			JSONObject gramJson = new JSONObject();
+			if(StringHelper.isValid(gramLog)){
+		        JSONTokener gramTorkenizer = new JSONTokener(gramLog);
+		        gramJson  = (JSONObject) gramTorkenizer.nextValue();
+			}
+			obj.put("gramLog", gramJson);
+
 			//JSONArray jsonArray = new JSONArray();
 			JSONObject roles = new JSONObject();
 			for (MeetingRole role : meeting.getMeetingRoles()) {
 				JSONObject jsonObj = new JSONObject();
 				jsonObj.put("id", role.getId());
-				String amCount = role.getAmCount();
-				JSONObject amJsonObj = new JSONObject();
-				if(StringHelper.isValid(amCount)){
-			        JSONTokener amTokenizer = new JSONTokener(amCount);
-			        amJsonObj  = (JSONObject) amTokenizer.nextValue();
-				}
-				jsonObj.put("amCount", amJsonObj);
 				jsonObj.put("created", role.getCreated());
 				jsonObj.put("roleId", role.getRoleId());
 				jsonObj.put("userId", role.getUserId());
@@ -66,6 +71,7 @@ public class MeetingParser {
 		return obj.toString();
 	}
 
+	@SuppressWarnings("unchecked")
 	public static Meeting fromJson(String json) {
         JSONTokener tokenizer = new JSONTokener(json);
         Meeting meeting = new Meeting();
@@ -96,6 +102,10 @@ public class MeetingParser {
             if (!obj.isNull("location")) {
             	meeting.setLocation(obj.getString("location"));
             }
+            if (!obj.isNull("gramLog")) {
+                JSONObject gramLog = obj.getJSONObject("gramLog");
+            	meeting.setGramLog(gramLog.toString());
+            }
             List<MeetingRole> roles = new ArrayList<MeetingRole>();
             JSONObject jRoles = obj.getJSONObject("roles");
             Iterator<String> keys = jRoles.keys();
@@ -106,10 +116,6 @@ public class MeetingParser {
             	role.setRoleId(key);
                 if (!jRole.isNull("id")) {
                 	role.setId(jRole.getInt("id"));
-                }
-                if (!jRole.isNull("amCount")) {
-                    JSONObject amCount = jRole.getJSONObject("amCount");
-                	role.setAmCount(amCount.toString());
                 }
                 if (!jRole.isNull("timeLimits")) {
                     JSONObject timeLimits = jRole.getJSONObject("timeLimits");
@@ -131,14 +137,21 @@ public class MeetingParser {
             	roles.add(role);
             }
             meeting.setMeetingRoles(roles);            
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return meeting;
 	}
 
-	private static Date formatToDate(String string) {
-		return null;
+	private static Date formatToDate(String strDate) throws ParseException {
+		if(!StringHelper.isValid(strDate)){
+			return null;
+		}
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		if(strDate.indexOf("T")>0){
+			strDate = strDate.substring(0, strDate.indexOf("T"));
+		}
+		return df.parse(strDate);
 	}
 
 }

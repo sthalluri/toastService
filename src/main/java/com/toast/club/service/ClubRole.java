@@ -15,6 +15,10 @@ public class ClubRole {
 	@Column
 	private String description;
 
+	@Column
+	private Boolean trackTime;
+
+	
 	public String getId() {
 		return id;
 	}
@@ -30,4 +34,14 @@ public class ClubRole {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Boolean getTrackTime() {
+		return trackTime;
+	}
+
+	public void setTrackTime(Boolean trackTime) {
+		this.trackTime = trackTime;
+	}
+	
+	
 }

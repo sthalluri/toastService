@@ -14,7 +14,7 @@ import com.toast.util.JSONParser;
 @Service
 @Scope("prototype")
 public class Response {
-	
+
 	@Autowired
 	private MessageSource messageSource;
 
@@ -23,6 +23,7 @@ public class Response {
 	private String errorMessage;
 	private String returnName;
 	private Object returnVal;
+	private String returnJson;
 
 	public Boolean getSuccess() {
 		return success;
@@ -63,24 +64,23 @@ public class Response {
 	public void setReturnVal(Object returnVal) {
 		this.returnVal = returnVal;
 	}
-	
-	public void addMessage(String key, Object[] args){
-		this.setSuccessMessage(messageSource.getMessage(key,args, Locale.ENGLISH));
-	}
-	
-	public void addMessage(String key){
-		this.setSuccessMessage(messageSource.getMessage(key,null, Locale.ENGLISH));
+
+	public void addMessage(String key, Object[] args) {
+		this.setSuccessMessage(messageSource.getMessage(key, args, Locale.ENGLISH));
 	}
 
-	public void addError(String key, Object[] args){
-		this.setErrorMessage(messageSource.getMessage(key,args, Locale.ENGLISH));
+	public void addMessage(String key) {
+		this.setSuccessMessage(messageSource.getMessage(key, null, Locale.ENGLISH));
 	}
-	
-	public void addError(String key){
-		this.setErrorMessage(messageSource.getMessage(key,null, Locale.ENGLISH));
-	}	
 
-	
+	public void addError(String key, Object[] args) {
+		this.setErrorMessage(messageSource.getMessage(key, args, Locale.ENGLISH));
+	}
+
+	public void addError(String key) {
+		this.setErrorMessage(messageSource.getMessage(key, null, Locale.ENGLISH));
+	}
+
 	public MessageSource getMessageSource() {
 		return messageSource;
 	}
@@ -89,25 +89,36 @@ public class Response {
 		this.messageSource = messageSource;
 	}
 
+	public String getReturnJson() {
+		return returnJson;
+	}
+
+	public void setReturnJson(String returnJson) {
+		this.returnJson = returnJson;
+	}
+
 	public String toJson() {
 		try {
 			StringBuffer json = new StringBuffer("{\"success\":" + success);
 			if (returnVal != null) {
-				String returnJson = "";
-				if(returnVal instanceof List){
+				if (returnVal instanceof List) {
 					returnJson = JSONParser.listToJSON((List) returnVal);
-				}else{
+				} else {
 					returnJson = JSONParser.toJSON(returnVal);
 				}
-				json.append(", \"returnVal\":" + returnJson);
 			}
+			if (returnJson == null) {
+				returnJson = "{}";
+			}
+			System.out.println(returnJson);
+			json.append(", \"returnVal\":" + returnJson);
 
 			if (successMessage != null) {
-				json.append(", \"successMessage\": \"" + successMessage+"\"");
+				json.append(", \"successMessage\": \"" + successMessage + "\"");
 			}
 
 			if (errorMessage != null) {
-				json.append(", \"errorMessage\": \"" + errorMessage+"\"");
+				json.append(", \"errorMessage\": \"" + errorMessage + "\"");
 			}
 
 			json.append(" }");

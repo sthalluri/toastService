@@ -16,6 +16,10 @@ import javax.persistence.Table;
 
 import com.toast.user.service.User;
 
+/**
+ * @author sthalluri
+ *
+ */
 @Entity
 @Table(name = "CLUB")
 public class Club {
@@ -29,6 +33,9 @@ public class Club {
 
 	@Column
 	private String clubName;
+
+	@Column
+	private String clubSettings;
 
 	@Column
 	private String passCode;
@@ -100,7 +107,11 @@ public class Club {
 		this.clubMembers = clubMembers;
 	}
 
-	
-	
-	
+	public String getClubSettings() {
+		return clubSettings;
+	}
+
+	public void setClubSettings(String clubSettings) {
+		this.clubSettings = clubSettings;
+	}
 }

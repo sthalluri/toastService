@@ -34,6 +34,7 @@ CREATE TABLE club
     clubId			VARCHAR(50),
     clubName		VARCHAR(200),
     passCode 		VARCHAR(50),
+    clubSettings	VARCHAR(2000),
     updated			TIMESTAMP,
     created     	TIMESTAMP
 )
@@ -62,6 +63,7 @@ CREATE TABLE meeting
 	themeOfTheDay	VARCHAR(250),
 	meetingDate		TIMESTAMP,
 	location		VARCHAR(250),
+	gramLog			VARCHAR(2000),
     updated			TIMESTAMP,
     created     	TIMESTAMP
 )
@@ -105,6 +107,7 @@ go
 CREATE TABLE clubRole
 (
     id          	VARCHAR(50) PRIMARY KEY ,
-    description 	VARCHAR(250)
+    description 	VARCHAR(250),
+    trackTime 		VARCHAR(1)
 )
 go

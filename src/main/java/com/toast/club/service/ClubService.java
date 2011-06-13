@@ -56,4 +56,11 @@ public class ClubService {
 		return clubRoleDAO.list();
 	}
 
+	@Transactional
+	public void saveSettings(Club club) {
+		Club existingClub = clubDAO.get(club.getId());
+		existingClub.setClubSettings(club.getClubSettings());
+		clubDAO.save(existingClub);
+	}
+
 }
