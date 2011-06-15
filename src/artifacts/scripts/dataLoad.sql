@@ -2,10 +2,10 @@
 insert into user values(null,'guest','Alpha', 'User',null,'guest@gmail.com','guest',1,null,null);
 insert into user values(null,'guest2','Beta', 'User',null,'guest2@gmail.com','guest',1,null,null);
 
-insert into club values(null, 'PERSONAL', 'MYCLUB',null, null,null);
+insert into club values(null, 'PERSONAL', 'MYCLUB',null, null, null,null);
 
-insert into clubmember values (1,1);
-insert into clubmember values (1,2);
+insert into clubmember values (1,7);
+insert into clubmember values (1,8);
 
 insert into clubRole values ('speaker1','First Speech', 'Y');
 insert into clubRole values ('speaker2', 'Second Speech', 'Y');
