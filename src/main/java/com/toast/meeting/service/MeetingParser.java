@@ -87,7 +87,8 @@ public class MeetingParser {
             }
             List<MeetingRole> roles = new ArrayList<MeetingRole>();
             JSONObject jRoles = obj.getJSONObject("roles");
-            Iterator<String> keys = jRoles.keys();
+            @SuppressWarnings("unchecked")
+			Iterator<String> keys = jRoles.keys();
             while(keys.hasNext()){
             	String key = keys.next();
             	JSONObject jRole = jRoles.getJSONObject(key);

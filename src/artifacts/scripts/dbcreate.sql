@@ -1,14 +1,10 @@
-drop database if exists toast
-go
+drop database if exists toast;
 
-create database toast
-go
+create database toast;
 
-use toast
-go
+use toast;
 
-drop table if exists user
-go
+drop table if exists user;
 
 CREATE TABLE user
 (
@@ -20,13 +16,14 @@ CREATE TABLE user
     email         	VARCHAR(50),
     password        VARCHAR(25),
     defaultClubId	INT,
+    aboutme     VARCHAR(256),
     updated			TIMESTAMP,
     created     	TIMESTAMP
-)
-go
+);
 
-drop table if exists club
-go
+ALTER TABLE user ADD UNIQUE INDEX email_UNIQUE (email ASC) ;
+
+drop table if exists club;
 
 CREATE TABLE club
 (
@@ -36,22 +33,26 @@ CREATE TABLE club
     passCode 		VARCHAR(50),
     updated			TIMESTAMP,
     created     	TIMESTAMP
-)
-go
+);
 
-drop table if exists clubMember
-go
+drop table if exists clubMember;
 
 CREATE TABLE clubMember
 (
     clubId          INT ,
     memberId		INT ,
     PRIMARY KEY (clubId, memberId)
-)
-go
+);
 
-drop table if exists meeting
-go
+ALTER TABLE clubMember ADD CONSTRAINT userMember
+  FOREIGN KEY (memberId)
+  REFERENCES user (id)
+  ON DELETE CASCADE
+  ON UPDATE NO ACTION
+, ADD INDEX userMember (memberId ASC) ;
+
+
+drop table if exists meeting;
 
 CREATE TABLE meeting
 (
@@ -63,11 +64,9 @@ CREATE TABLE meeting
 	meetingDate		TIMESTAMP,
     updated			TIMESTAMP,
     created     	TIMESTAMP
-)
-go
+);
 
-drop table if exists meetingRole
-go
+drop table if exists meetingRole;
 
 CREATE TABLE meetingRole
 (
@@ -79,12 +78,10 @@ CREATE TABLE meetingRole
 	userId			INT,
     updated			TIMESTAMP,
     created     	TIMESTAMP
-)
-go
+);
 
 
-drop table if exists meetingRoleContent
-go
+drop table if exists meetingRoleContent;
 
 CREATE TABLE meetingRoleContent
 (
@@ -94,15 +91,12 @@ CREATE TABLE meetingRoleContent
 	userId			INT,
     updated			TIMESTAMP,
     created     	TIMESTAMP
-)
-go
+);
 
-drop table if exists clubRole
-go
+drop table if exists clubRole;
 
 CREATE TABLE clubRole
 (
     id          	VARCHAR(50) PRIMARY KEY ,
     description 	VARCHAR(250)
-)
-go
+);
