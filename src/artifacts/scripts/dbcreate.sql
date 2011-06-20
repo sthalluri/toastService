@@ -61,7 +61,7 @@ CREATE TABLE meeting
     inProgress 		VARCHAR(1),
 	wordOfTheDay	VARCHAR(200),
 	themeOfTheDay	VARCHAR(250),
-	meetingDate		TIMESTAMP,
+	meetingDate		DATE,
 	location		VARCHAR(250),
 	gramLog			VARCHAR(2000),
     updated			TIMESTAMP,
