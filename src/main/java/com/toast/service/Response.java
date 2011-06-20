@@ -97,6 +97,7 @@ public class Response {
 		this.returnJson = returnJson;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public String toJson() {
 		try {
 			StringBuffer json = new StringBuffer("{\"success\":" + success);

@@ -3,7 +3,6 @@ package com.toast.util;
 import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.converters.extended.SqlTimestampConverter;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import com.toast.meeting.service.Meeting;
 import com.toast.meeting.service.MeetingParser;
@@ -20,7 +19,7 @@ public class JSONParser {
      * One option is to have a static method on the TO passed which knows which
      * parser to use
      */
-    public static Object parseJSON(String jsonString, Class className,
+    public static Object parseJSON(String jsonString, @SuppressWarnings("rawtypes") Class className,
             String nodeName) {
         XStream xstream = getXStream();
         if(nodeName ==null){
@@ -32,7 +31,7 @@ public class JSONParser {
         }
     }
     
-    public static Object parseJSON(String jsonString, Class className) {
+    public static Object parseJSON(String jsonString, @SuppressWarnings("rawtypes") Class className) {
         return parseJSON(jsonString, className, null);
     }
     
@@ -52,7 +51,7 @@ public class JSONParser {
         return xstream;
     }
 
-    public static String listToJSON(List rList) {    	
+    public static String listToJSON(@SuppressWarnings("rawtypes") List rList) {    	
     	StringBuffer str = new StringBuffer();
         if (rList.size() == 0) {
             return "{\"success\":\"\",\"size\":0,\"rows\":[]}";

@@ -44,6 +44,9 @@ public class User {
 
 	@Column
 	private Date created;
+	
+	@Column(name = "aboutMe")
+	private String aboutMe;
 
 	public Integer getId() {
 		return id;
@@ -133,5 +136,13 @@ public class User {
 		if (lastName != null) {
 			name += " " + lastName;
 		}
+	}
+
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}
+
+	public String getAboutMe() {
+		return aboutMe;
 	}
 }

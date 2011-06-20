@@ -1,7 +1,6 @@
 package com.toast.util;
 
 import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
@@ -15,14 +14,15 @@ public class SybTimestampConverter implements Converter {
 
     //com.sybase.jdbc3.tds.SybTimestamp
     
-        private Locale locale;
+        @SuppressWarnings("unused")
+		private Locale locale;
 
         public SybTimestampConverter(Locale locale) {
                 super();
                 this.locale = locale;
         }
 
-        public boolean canConvert(Class clazz) {
+        public boolean canConvert(@SuppressWarnings("rawtypes") Class clazz) {
                 return clazz.equals(Timestamp.class);
         }
 
