@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.toast.meeting.service.Meeting;
-import com.toast.meeting.service.MeetingRoleContent;
 
 @Repository
 public class MeetingDAO {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.toast.club.service.ClubService;
 import com.toast.presentation.BaseController;
 import com.toast.user.service.AuthToken;
 import com.toast.user.service.User;
@@ -29,6 +30,9 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ClubService clubService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Map<String, Object> map) throws JSONException {
@@ -70,13 +74,30 @@ public class UserController extends BaseController {
 		return "json";
 	}
 
-	@RequestMapping("/delete/{id}")
-	public String delete(@PathVariable("id") Integer userId) {
+	@RequestMapping(value = "/delete")
+	public String delete(@RequestParam("id") Integer userId, ModelMap model)
+	{
 		userService.delete(userId);
-		return "redirect:/index";
+		response.setSuccess(Boolean.TRUE);
+		model.put("json", response.toJson());
+		return "json";
 	}
 
-	
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String createUser(@RequestParam("json") String json, ModelMap model) throws JSONException
+	{
+		User user = (User)JSONParser.parseJSON(json, User.class);
+		Integer id = user.getId();
+		user.setDefaultClubId(1);
+		userService.save(user);
+		if( id == null )
+		{
+			clubService.addMember(1, user.getId());
+		}
+		response.setSuccess(Boolean.TRUE);
+		model.put("json", response.toJson());
+		return "json";
+	}
 	
 	
 }
