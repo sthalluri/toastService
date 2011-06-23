@@ -45,12 +45,12 @@ CREATE TABLE clubMember
     PRIMARY KEY (clubId, memberId)
 );
 
-ALTER TABLE clubMember ADD CONSTRAINT userMember
+ALTER TABLE clubMember ADD CONSTRAINT userClub
   FOREIGN KEY (memberId)
   REFERENCES user (id)
   ON DELETE CASCADE
   ON UPDATE NO ACTION
-, ADD INDEX userMember (memberId ASC) ;
+, ADD INDEX userClub (memberId ASC) ;
 
 
 drop table if exists meeting;
@@ -84,6 +84,12 @@ CREATE TABLE meetingRole
     created     	TIMESTAMP
 );
 
+ALTER TABLE meetingRole ADD CONSTRAINT userRole
+  FOREIGN KEY (userId)
+  REFERENCES user (id)
+  ON DELETE CASCADE
+  ON UPDATE NO ACTION
+, ADD INDEX userRole (userId ASC) ;
 
 drop table if exists meetingRoleContent;
 
@@ -104,5 +110,4 @@ CREATE TABLE clubRole
     id          	VARCHAR(50) PRIMARY KEY ,
     description 	VARCHAR(250),
     trackTime 		VARCHAR(1)
-)
-go
+);
