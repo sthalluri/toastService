@@ -10,7 +10,11 @@
 
 package com.toast.util;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import java.util.List;
 
@@ -18,6 +22,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
+import com.toast.meeting.service.MeetingParser;
 import com.toast.user.service.User;
 
 /**
@@ -82,5 +87,14 @@ public class JSONParserTest extends TestCase {
 		String str = JSONParser.listToJSON(users);
 
 		System.out.println(str);
+	}
+	
+	@Test
+	public void testDateParsing() throws ParseException{
+		Date date = MeetingParser.formatToDate("1980-01-01T11:00:00.000Z");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.s'Z'");
+		df.setTimeZone(java.util.TimeZone.getTimeZone("Zulu"));
+		System.out.println(df.format(date));
+
 	}
 }
