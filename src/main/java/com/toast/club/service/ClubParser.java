@@ -1,6 +1,6 @@
 package com.toast.club.service;
 
-import org.codehaus.jettison.json.JSONArray;
+//import org.codehaus.jettison.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -33,6 +33,8 @@ public class ClubParser {
 				jsonObj.put("firstName", member.getFirstName());
 				jsonObj.put("lastName", member.getLastName());
 				jsonObj.put("email", member.getEmail());
+				jsonObj.put("phone", member.getPhone());
+				jsonObj.put("aboutMe", member.getAboutMe());
 				members.put(member.getId().toString(), jsonObj);
 			}
 			obj.put("members", members);
