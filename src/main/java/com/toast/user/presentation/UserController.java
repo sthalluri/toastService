@@ -88,11 +88,10 @@ public class UserController extends BaseController {
 	{
 		User user = (User)JSONParser.parseJSON(json, User.class);
 		Integer id = user.getId();
-		user.setDefaultClubId(1);
 		userService.save(user);
 		if( id == null )
 		{
-			clubService.addMember(1, user.getId());
+			clubService.addMember(user.getDefaultClubId(), user.getId());
 		}
 		response.setSuccess(Boolean.TRUE);
 		model.put("json", response.toJson());
