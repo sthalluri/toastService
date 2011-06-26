@@ -36,6 +36,9 @@ public class Meeting {
 	private Date meetingDate;
 
 	@Column
+	private String meetingTime;
+
+	@Column
 	private String gramLog;
 
 	@Column
@@ -46,6 +49,8 @@ public class Meeting {
 
 	@Column
 	private Date created;
+	
+	
 
 	@OneToMany(mappedBy = "meeting", targetEntity = MeetingRole.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<MeetingRole> meetingRoles;
@@ -136,6 +141,15 @@ public class Meeting {
 
 	public void setGramLog(String gramLog) {
 		this.gramLog = gramLog;
+	}
+
+	
+	public String getMeetingTime() {
+		return meetingTime;
+	}
+
+	public void setMeetingTime(String meetingTime) {
+		this.meetingTime = meetingTime;
 	}
 
 	@Override

@@ -34,6 +34,7 @@ public class MeetingParser {
 			obj.put("themeOfTheDay", meeting.getThemeOfTheDay());
 			obj.put("wordOfTheDay", meeting.getWordOfTheDay());
 			obj.put("location", meeting.getLocation());
+			obj.put("meetingTime", meeting.getMeetingTime());
 			String gramLog = meeting.getGramLog();
 			JSONObject gramJson = new JSONObject();
 			if(StringHelper.isValid(gramLog)){
@@ -101,6 +102,9 @@ public class MeetingParser {
             }
             if (!obj.isNull("location")) {
             	meeting.setLocation(obj.getString("location"));
+            }
+            if (!obj.isNull("meetingTime")) {
+            	meeting.setMeetingTime(obj.getString("meetingTime"));
             }
             if (!obj.isNull("gramLog")) {
                 JSONObject gramLog = obj.getJSONObject("gramLog");
