@@ -30,10 +30,11 @@ public class MeetingParser {
 			}
 			obj.put("created", meeting.getCreated());
 			obj.put("inProgress", meeting.getInProgress());
-			obj.put("meetingDate", meeting.getMeetingDate());
+			obj.put("meetingDate", dateToString(meeting.getMeetingDate()));
 			obj.put("themeOfTheDay", meeting.getThemeOfTheDay());
 			obj.put("wordOfTheDay", meeting.getWordOfTheDay());
 			obj.put("location", meeting.getLocation());
+			obj.put("meetingTime", meeting.getMeetingTime());
 			String gramLog = meeting.getGramLog();
 			JSONObject gramJson = new JSONObject();
 			if(StringHelper.isValid(gramLog)){
@@ -82,7 +83,7 @@ public class MeetingParser {
                 meeting.setId(obj.getInt("id"));
             }
             if (!obj.isNull("created")) {
-                meeting.setCreated(formatToDate(obj.getString("created")));
+                //meeting.setCreated(formatToDate(obj.getString("created")));
             }
             if (!obj.isNull("inProgress")) {
                 meeting.setInProgress(obj.getBoolean("inProgress"));
@@ -101,6 +102,9 @@ public class MeetingParser {
             }
             if (!obj.isNull("location")) {
             	meeting.setLocation(obj.getString("location"));
+            }
+            if (!obj.isNull("meetingTime")) {
+            	meeting.setMeetingTime(obj.getString("meetingTime"));
             }
             if (!obj.isNull("gramLog")) {
                 JSONObject gramLog = obj.getJSONObject("gramLog");
@@ -144,15 +148,19 @@ public class MeetingParser {
 		return meeting;
 	}
 
-	private static Date formatToDate(String strDate) throws ParseException {
+	public static Date formatToDate(String strDate) throws ParseException {
 		if(!StringHelper.isValid(strDate)){
 			return null;
 		}
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		if(strDate.indexOf("T")>0){
-			strDate = strDate.substring(0, strDate.indexOf("T"));
-		}
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.s'Z'");
+		df.setTimeZone(java.util.TimeZone.getTimeZone("Zulu"));
 		return df.parse(strDate);
+	}
+
+	public static String dateToString(Date date) {
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.s'Z'");
+		df.setTimeZone(java.util.TimeZone.getTimeZone("Zulu"));
+		return df.format(date);
 	}
 
 }

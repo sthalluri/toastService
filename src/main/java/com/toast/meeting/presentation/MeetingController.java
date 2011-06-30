@@ -60,9 +60,13 @@ public class MeetingController extends BaseController{
 	}
 
 	@RequestMapping("/delete/{id}")
-	public String delete(@PathVariable("id") Integer meetingId) {
+	public String delete(@PathVariable("id") Integer meetingId, HttpSession session, ModelMap model) {
+		Meeting meeting = meetingService.get(meetingId);
 		meetingService.delete(meetingId);
-		return "redirect:/index";
+		response.setReturnVal(meetingService.getByClubId(meeting.getClubId()));
+		response.addMessage("msg.savesuccessful");
+		model.put("json", response.toJson());
+		return "json";
 	}
 	
 	@RequestMapping(value = "/getContent/{id}", method = RequestMethod.GET)
