@@ -10,6 +10,9 @@
 
 package com.toast.util;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -96,5 +99,20 @@ public class JSONParserTest extends TestCase {
 		df.setTimeZone(java.util.TimeZone.getTimeZone("Zulu"));
 		System.out.println(df.format(date));
 
+	}
+	
+	public void testMD5() throws NoSuchAlgorithmException{
+		String plaintext = "guest";
+		MessageDigest m = MessageDigest.getInstance("MD5");
+		m.reset();
+		m.update(plaintext.getBytes());
+		byte[] digest = m.digest();
+		BigInteger bigInt = new BigInteger(1,digest);
+		String hashtext = bigInt.toString(16);
+		// Now we need to zero pad it if you actually want the full 32 chars.
+		while(hashtext.length() < 32 ){
+		  hashtext = "0"+hashtext;
+		}
+		System.out.println(hashtext);
 	}
 }

@@ -2,6 +2,7 @@ package com.toast.user.presentation;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.toast.club.service.ClubService;
 import com.toast.presentation.BaseController;
@@ -33,7 +36,7 @@ public class UserController extends BaseController {
 	
 	@Autowired
 	private ClubService clubService;
-
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Map<String, Object> map) throws JSONException {
 		map.put("user", new User());
@@ -60,12 +63,17 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
 	public String checkLogin(@RequestParam("json") String json, ModelMap model)
 			throws JSONException {
+		
+		ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder
+				.currentRequestAttributes();
+		System.out.println("Session id :"+attrs.getSessionId());
 		AuthToken authToken = (AuthToken) JSONParser.parseJSON(json, AuthToken.class);
 		User user = userService.checkLogin(authToken);
 		if (user !=null) {
 			response.setSuccess(Boolean.TRUE);
 			response.setReturnVal(user);
 			response.addMessage("login.success");
+			
 		} else {
 			response.setSuccess(Boolean.FALSE);
 			response.addError("login.failure");

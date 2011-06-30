@@ -14,7 +14,7 @@ CREATE TABLE user
     lastName    	VARCHAR(50),
     phone   		VARCHAR(15),
     email         	VARCHAR(50),
-    password        VARCHAR(25),
+    password        VARCHAR(50),
     defaultClubId	INT,
     aboutMe     VARCHAR(256),
     updated			TIMESTAMP,
