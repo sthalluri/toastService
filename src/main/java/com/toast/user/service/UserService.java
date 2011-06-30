@@ -12,6 +12,7 @@ import com.toast.club.service.Club;
 import com.toast.service.BaseService;
 import com.toast.service.Response;
 import com.toast.user.integration.UserDAO;
+import com.toast.util.StringHelper;
 
 @Service
 public class UserService extends BaseService{
@@ -24,6 +25,9 @@ public class UserService extends BaseService{
 
 	@Transactional
 	public void save(User user) {
+		if(!StringHelper.isValid(user.getEmail())){
+			user.setEmail(user.getUserId());
+		}
 		userDAO.save(user);
 	}
 
@@ -71,6 +75,7 @@ public class UserService extends BaseService{
 			Club club = new Club();
 			club.setClubId("PERSONAL");
 			club.setClubName("MYCLUB");
+			club.setClubSettings("{\"fillers\":[\"ah\",\"amm\",\"so\",\"like\",\"others\"]}");
 			
 			List<User> clubMembers = new ArrayList<User>();
 			clubMembers.add(user);
