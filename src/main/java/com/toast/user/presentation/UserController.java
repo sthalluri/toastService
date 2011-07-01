@@ -63,17 +63,17 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
 	public String checkLogin(@RequestParam("json") String json, ModelMap model)
 			throws JSONException {
-		
 		ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder
 				.currentRequestAttributes();
 		System.out.println("Session id :"+attrs.getSessionId());
+		
 		AuthToken authToken = (AuthToken) JSONParser.parseJSON(json, AuthToken.class);
 		User user = userService.checkLogin(authToken);
 		if (user !=null) {
 			response.setSuccess(Boolean.TRUE);
 			response.setReturnVal(user);
-			response.addMessage("login.success");
-			
+			response.addMessage("login.success");			
+			request.getSession().setAttribute("LOGGED_IN_USER", user);
 		} else {
 			response.setSuccess(Boolean.FALSE);
 			response.addError("login.failure");

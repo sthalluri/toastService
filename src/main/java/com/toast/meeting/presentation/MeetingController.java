@@ -38,7 +38,7 @@ public class MeetingController extends BaseController{
 
 	@RequestMapping(value = "/getByClubId/{id}", method = RequestMethod.GET)
 	public String getByClubId(@PathVariable("id") Integer clubId, Map<String, Object> map) throws JSONException {
-		
+		System.out.println("Logged In As :"+getUserId());
 		ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		System.out.println("Session id :"+attrs.getSessionId());
 
@@ -50,6 +50,7 @@ public class MeetingController extends BaseController{
 	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
 	public String get(@PathVariable("id") Integer meetingId, HttpSession session, ModelMap model)
 			throws JSONException {
+		System.out.println("Logged In As :"+getUserId());
 		Meeting meeting = meetingService.get(meetingId);
 		model.put("json", MeetingParser.toJson(meeting));
 		return "json";
@@ -57,6 +58,7 @@ public class MeetingController extends BaseController{
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@RequestParam("json") String json, ModelMap model) throws JSONException {
+		System.out.println("Logged In As :"+getUser());
 		Meeting meeting = (Meeting) MeetingParser.fromJson(json);
 		meetingService.save(meeting);
 		response.setReturnVal(meeting);
