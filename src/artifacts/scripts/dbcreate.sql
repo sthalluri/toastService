@@ -9,88 +9,75 @@ drop table if exists user;
 CREATE TABLE user
 (
     id              INT PRIMARY KEY AUTO_INCREMENT,
-    userId    		VARCHAR(50),
-    firstName    	VARCHAR(50),
-    lastName    	VARCHAR(50),
-    phone   		VARCHAR(15),
+    userId    		  VARCHAR(50),
+    firstName    	  VARCHAR(50),
+    lastName    	  VARCHAR(50),
+    phone   		    VARCHAR(15),
     email         	VARCHAR(50),
     password        VARCHAR(50),
-    defaultClubId	INT,
-    aboutMe     VARCHAR(256),
-    updated			TIMESTAMP,
-    created     	TIMESTAMP
+    defaultClubId	  INT,
+    aboutMe         VARCHAR(256),
+    updated			    TIMESTAMP,
+    created     	  TIMESTAMP,
+    isenabled       VARCHAR(1)  DEFAULT 'Y'
 );
 
-ALTER TABLE user ADD UNIQUE INDEX email_UNIQUE (email ASC) ;
+ALTER TABLE user ADD UNIQUE INDEX email_UNIQUE (email ASC);
+ALTER TABLE user ADD CONSTRAINT chk_enabled CHECK ( isenabled IN ('Y', 'N') );
 
 drop table if exists club;
 
 CREATE TABLE club
 (
     id              INT PRIMARY KEY AUTO_INCREMENT,
-    clubId			VARCHAR(50),
-    clubName		VARCHAR(200),
-    passCode 		VARCHAR(50),
-    clubSettings	VARCHAR(2000),
-    updated			TIMESTAMP,
-    created     	TIMESTAMP
+    clubId			    VARCHAR(50),
+    clubName		    VARCHAR(200),
+    passCode 		    VARCHAR(50),
+    clubSettings	  VARCHAR(2000),
+    updated			    TIMESTAMP,
+    created     	  TIMESTAMP
 );
 
 drop table if exists clubMember;
 
 CREATE TABLE clubMember
 (
-    clubId          INT ,
-    memberId		INT ,
+    clubId          INT,
+    memberId		    INT,
     PRIMARY KEY (clubId, memberId)
 );
-
-ALTER TABLE clubMember ADD CONSTRAINT userClub
-  FOREIGN KEY (memberId)
-  REFERENCES user (id)
-  ON DELETE CASCADE
-  ON UPDATE NO ACTION
-, ADD INDEX userClub (memberId ASC) ;
-
 
 drop table if exists meeting;
 
 CREATE TABLE meeting
 (
     id              INT PRIMARY KEY AUTO_INCREMENT,
-    clubId			INT,
-    inProgress 		VARCHAR(1),
-	wordOfTheDay	VARCHAR(200),
-	themeOfTheDay	VARCHAR(250),
-	meetingDate		TIMESTAMP,
-	meetingTime		VARCHAR(10),
-	location		VARCHAR(250),
-	gramLog			VARCHAR(2000),
-    updated			TIMESTAMP,
-    created     	TIMESTAMP
+    clubId			    INT,
+    inProgress 		  VARCHAR(1),
+	  wordOfTheDay    VARCHAR(200),
+	  themeOfTheDay   VARCHAR(250),
+	  meetingDate	    TIMESTAMP,
+	  meetingTime	    VARCHAR(10),
+	  location	      VARCHAR(250),
+	  gramLog		      VARCHAR(2000),
+    updated			    TIMESTAMP,
+    created     	  TIMESTAMP
 );
 
 drop table if exists meetingRole;
 
 CREATE TABLE meetingRole
 (
-    id              INT PRIMARY KEY AUTO_INCREMENT,
+    id            INT PRIMARY KEY AUTO_INCREMENT,
     meetingId 		INT,
-	roleId			VARCHAR(50),
-	timeSpent		INT,
-	amCount			VARCHAR(100),
-	timeLimits		VARCHAR(100),
-	userId			INT,
-    updated			TIMESTAMP,
+	  roleId			  VARCHAR(50),
+	  timeSpent		  INT,
+	  amCount			  VARCHAR(100),
+	  timeLimits		VARCHAR(100),
+	  userId			  INT,
+    updated			  TIMESTAMP,
     created     	TIMESTAMP
 );
-
-ALTER TABLE meetingRole ADD CONSTRAINT userRole
-  FOREIGN KEY (userId)
-  REFERENCES user (id)
-  ON DELETE CASCADE
-  ON UPDATE NO ACTION
-, ADD INDEX userRole (userId ASC) ;
 
 drop table if exists meetingRoleContent;
 
@@ -98,10 +85,10 @@ CREATE TABLE meetingRoleContent
 (
     id              INT PRIMARY KEY AUTO_INCREMENT,
     meetingRoleId 	INT,
-	content			VARCHAR(2500),
-	userId			INT,
-    updated			TIMESTAMP,
-    created     	TIMESTAMP
+	  content			    VARCHAR(2500),
+	  userId   		    INT,
+    updated			    TIMESTAMP,
+    created     	  TIMESTAMP
 );
 
 drop table if exists clubRole;

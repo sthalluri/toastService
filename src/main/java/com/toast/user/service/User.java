@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Check;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -47,6 +49,10 @@ public class User {
 	
 	@Column(name = "aboutMe")
 	private String aboutMe;
+	
+	@Column(name = "isenabled")
+	@Check(constraints = "isenabled IN ('Y', 'N')")
+	private char isEnabled;
 
 	public Integer getId() {
 		return id;
@@ -144,5 +150,13 @@ public class User {
 
 	public String getAboutMe() {
 		return aboutMe;
+	}
+
+	public void setIsEnabled(char isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+
+	public char getIsEnabled() {
+		return isEnabled;
 	}
 }

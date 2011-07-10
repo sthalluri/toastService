@@ -1,6 +1,6 @@
 
-insert into user values(null,'guest@gmail.com','Alpha', 'User',null,'guest@gmail.com','084e0343a0486ff05530df6c705c8bb4',1,'',null,null);
-insert into user values(null,'guest2@gmail.com','Beta', 'User',null,'guest2@gmail.com','084e0343a0486ff05530df6c705c8bb4',1,'',null,null);
+insert into user values(null,'guest@gmail.com','Alpha', 'User',null,'guest@gmail.com','084e0343a0486ff05530df6c705c8bb4',1,'',null,null,'Y');
+insert into user values(null,'guest2@gmail.com','Beta', 'User',null,'guest2@gmail.com','084e0343a0486ff05530df6c705c8bb4',1,'',null,null,'Y');
 
 insert into club values(null, 'PERSONAL', 'MYCLUB',null,null, null,null);
 

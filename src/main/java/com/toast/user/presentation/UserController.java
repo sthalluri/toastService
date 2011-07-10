@@ -2,7 +2,6 @@ package com.toast.user.presentation;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -85,9 +84,12 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/delete")
 	public String delete(@RequestParam("id") Integer userId, ModelMap model)
 	{
-		userService.delete(userId);
+		User user = userService.get(userId);
+		user.setIsEnabled('N');
+		userService.save(user);
 		response.setSuccess(Boolean.TRUE);
 		model.put("json", response.toJson());
+		
 		return "json";
 	}
 

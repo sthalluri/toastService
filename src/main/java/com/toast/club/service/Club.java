@@ -1,5 +1,6 @@
 package com.toast.club.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -100,7 +101,16 @@ public class Club {
 	}
 
 	public List<User> getClubMembers() {
-		return clubMembers;
+		List<User> enabledMembers = new ArrayList<User>();
+		for(int i = 0; i < clubMembers.size(); i++)
+		{
+			User member = clubMembers.get(i);
+			if(member.getIsEnabled() == 'Y')
+			{
+				enabledMembers.add(member);
+			}
+		}
+		return enabledMembers;
 	}
 
 	public void setClubMembers(List<User> clubMembers) {
