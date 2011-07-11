@@ -10,6 +10,7 @@ import com.toast.club.integration.ClubDAO;
 import com.toast.club.integration.ClubRoleDAO;
 import com.toast.user.integration.UserDAO;
 import com.toast.user.service.User;
+import com.toast.util.StringHelper;
 
 @Service
 public class ClubService {

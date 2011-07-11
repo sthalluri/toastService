@@ -85,8 +85,8 @@ CREATE TABLE meetingRoleContent
 (
     id              INT PRIMARY KEY AUTO_INCREMENT,
     meetingRoleId 	INT,
-	  content			    VARCHAR(2500),
-	  userId   		    INT,
+	content			VARCHAR(2500),
+	userId   		INT,
     updated			    TIMESTAMP,
     created     	  TIMESTAMP
 );

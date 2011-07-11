@@ -2,7 +2,7 @@
 insert into user values(null,'guest@gmail.com','Alpha', 'User',null,'guest@gmail.com','084e0343a0486ff05530df6c705c8bb4',1,'',null,null,'Y');
 insert into user values(null,'guest2@gmail.com','Beta', 'User',null,'guest2@gmail.com','084e0343a0486ff05530df6c705c8bb4',1,'',null,null,'Y');
 
-insert into club values(null, 'PERSONAL', 'MYCLUB',null,null, null,null);
+insert into club values(null, 'PERSONAL', 'MYCLUB',null,'{"fillers":["ah","amm","so","like","others"]}', null,null);
 
 insert into clubmember values (1,1);
 insert into clubmember values (1,2);
@@ -23,6 +23,7 @@ insert into clubRole values ('ttResponse4',   'Table Topic Response4', 'Y');
 insert into clubRole values ('ttResponse5',   'Table Topic Response5', 'Y');
 insert into clubRole values ('ttResponse6',   'Table Topic Response6', 'Y');
 insert into clubRole values ('ttResponse7',   'Table Topic Response7', 'Y');
-insert into clubRole values ('ttResponse',    'Table Topic Response8', 'Y');
+insert into clubRole values ('ttResponse8',    'Table Topic Response8', 'Y');
+
 
 

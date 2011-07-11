@@ -101,16 +101,16 @@ public class Club {
 	}
 
 	public List<User> getClubMembers() {
-		List<User> enabledMembers = new ArrayList<User>();
-		for(int i = 0; i < clubMembers.size(); i++)
-		{
-			User member = clubMembers.get(i);
-			if(member.getIsEnabled() == 'Y')
-			{
-				enabledMembers.add(member);
-			}
-		}
-		return enabledMembers;
+//		List<User> enabledMembers = new ArrayList<User>();
+//		for(int i = 0; i < clubMembers.size(); i++)
+//		{
+//			User member = clubMembers.get(i);
+//			enabledMembers.add(member);
+//			if(member.getIsEnabled() == 'Y')
+//			{
+//			}
+//		}
+		return clubMembers;
 	}
 
 	public void setClubMembers(List<User> clubMembers) {

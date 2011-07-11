@@ -22,6 +22,9 @@ public class BaseController {
 
 	protected String getUserId() {
 		User user = (User) request.getSession().getAttribute("LOGGED_IN_USER");
+		if(user==null){
+			return null;
+		}
 		return user.getUserId();
 	}
 
