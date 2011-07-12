@@ -51,17 +51,17 @@ drop table if exists meeting;
 
 CREATE TABLE meeting
 (
-    id              INT PRIMARY KEY AUTO_INCREMENT,
-    clubId			    INT,
-    inProgress 		  VARCHAR(1),
-	  wordOfTheDay    VARCHAR(200),
-	  themeOfTheDay   VARCHAR(250),
-	  meetingDate	    TIMESTAMP,
-	  meetingTime	    VARCHAR(10),
-	  location	      VARCHAR(250),
-	  gramLog		      VARCHAR(2000),
-    updated			    TIMESTAMP,
-    created     	  TIMESTAMP
+    id            	INT PRIMARY KEY AUTO_INCREMENT,
+    clubId			INT,
+    inProgress 		VARCHAR(1),
+	wordOfTheDay   	VARCHAR(200),
+	themeOfTheDay  	VARCHAR(250),
+	meetingDate	   	TIMESTAMP,
+	meetingTime	   	VARCHAR(10),
+	location	   	VARCHAR(250),
+	gramLog		   	VARCHAR(2000),
+    updated			TIMESTAMP,
+    created     	TIMESTAMP
 );
 
 drop table if exists meetingRole;
