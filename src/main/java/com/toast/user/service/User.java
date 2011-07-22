@@ -38,6 +38,9 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
+	@Column(name = "accessKey")
+	private String accessKey;
+
 	@Column(name = "defaultClubId")
 	private Integer defaultClubId;
 
@@ -158,5 +161,13 @@ public class User {
 
 	public char getIsEnabled() {
 		return isEnabled;
+	}
+
+	public String getAccessKey() {
+		return accessKey;
+	}
+
+	public void setAccessKey(String accessKey) {
+		this.accessKey = accessKey;
 	}
 }

@@ -36,14 +36,14 @@ public class UserController extends BaseController {
 	@Autowired
 	private ClubService clubService;
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public String list(Map<String, Object> map) throws JSONException {
 		map.put("user", new User());
 		map.put("json", JSONParser.listToJSON(userService.list()));
 		return "json";
 	}
 
-	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.POST)
 	public String get(@PathVariable("id") Integer userId, HttpSession session, ModelMap model)
 			throws JSONException {
 		User user = userService.get(userId);
@@ -81,7 +81,7 @@ public class UserController extends BaseController {
 		return "json";
 	}
 
-	@RequestMapping(value = "/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestParam("id") Integer userId, ModelMap model)
 	{
 		User user = userService.get(userId);

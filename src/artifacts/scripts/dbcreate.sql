@@ -9,16 +9,17 @@ drop table if exists user;
 CREATE TABLE user
 (
     id              INT PRIMARY KEY AUTO_INCREMENT,
-    userId    		  VARCHAR(50),
-    firstName    	  VARCHAR(50),
-    lastName    	  VARCHAR(50),
-    phone   		    VARCHAR(15),
+    userId    		VARCHAR(50),
+    firstName    	VARCHAR(50),
+    lastName    	VARCHAR(50),
+    phone   		VARCHAR(15),
     email         	VARCHAR(50),
     password        VARCHAR(50),
-    defaultClubId	  INT,
+    accessKey       VARCHAR(50),
+    defaultClubId	INT,
     aboutMe         VARCHAR(256),
-    updated			    TIMESTAMP,
-    created     	  TIMESTAMP,
+    updated			TIMESTAMP,
+    created     	TIMESTAMP,
     isenabled       VARCHAR(1)  DEFAULT 'Y'
 );
 

@@ -29,13 +29,13 @@ public class ClubController {
 	@Autowired
 	private ClubService clubService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public String list(Map<String, Object> map) throws JSONException {
 		map.put("json", JSONParser.listToJSON(clubService.list()));
 		return "json";
 	}
 
-	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.POST)
 	public String get(@PathVariable("id") Integer clubId, HttpSession session, ModelMap model)
 			throws JSONException {
 		Response response = new Response();
@@ -45,7 +45,7 @@ public class ClubController {
 		return "json";
 	}
 
-	@RequestMapping(value = "/getClubMembers/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getClubMembers/{id}", method = RequestMethod.POST)
 	public String getClubMembers(@PathVariable("id") Integer clubId, HttpSession session, ModelMap model)
 			throws JSONException {
 		Response response = new Response();
@@ -79,7 +79,7 @@ public class ClubController {
 		return "redirect:/index";
 	}
 	
-	@RequestMapping(value = "/clubRoleList", method = RequestMethod.GET)
+	@RequestMapping(value = "/clubRoleList", method = RequestMethod.POST)
 	public String clubRoleList(ModelMap model) throws JSONException {
 		Response response = new Response();
 		List<ClubRole> roles = clubService.getClubRoles();

@@ -25,7 +25,12 @@ public class BaseController {
 		if(user==null){
 			return null;
 		}
+		System.out.println("Accesskey:"+request.getParameter("accessKey"));
+		if(request.getSession()!=null){
+			System.out.println("SessionID"+request.getSession().getId());
+		}else{
+			System.out.println("SessionID is null");
+		}
 		return user.getUserId();
 	}
-
 }

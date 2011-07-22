@@ -2,6 +2,7 @@ package com.toast.user.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,11 @@ public class UserService extends BaseService{
 	}
 
 	@Transactional
+	public User getByAccessKey(String accessKey) {
+		return userDAO.getByAccessKey(accessKey);
+	}
+
+	@Transactional
 	public User checkLogin(AuthToken authToken){
 		User user = userDAO.getByUserId(authToken.getUserId());
 		if(authToken.getPassword() !=null && user !=null && authToken.getPassword().equals(user.getPassword())){
@@ -69,6 +75,8 @@ public class UserService extends BaseService{
 			response.setSuccess(Boolean.FALSE);
 			response.addError("error.user.exists");
 		}else{
+			Random generator = new Random(134232342);
+			user.setAccessKey(Long.toString(generator.nextLong()));			
 			save(user);
 			
 			//Create a personal club for this user and save it

@@ -44,4 +44,9 @@ public class UserDAO {
 		return (User) sessionFactory.getCurrentSession().createQuery("from User where userId = ?")
 		.setString(0, userId).uniqueResult();
 	}
+
+	public User getByAccessKey(String accessKey) {
+		return (User) sessionFactory.getCurrentSession().createQuery("from User where accessKey = ?")
+		.setString(0, accessKey).uniqueResult();
+	}
 }
